@@ -12,17 +12,19 @@ public class bubble {
 	}
 
 	public static void bubblesort(int[] arr) {
+		boolean swapped;
 		for (int i = 0; i < arr.length; i++) {
-			boolean swapped;
-			for (int j = 1; j < arr.length - i; i++) {
-				swapped = false;
+			swapped = false;
+			for (int j = 1; j < arr.length - i; j++) {
+
 				if (arr[j] < arr[j - 1]) {
 					swap(arr, j, j - 1);
 					swapped = true;
 				}
-				if (!swapped) {
-					break;
-				}
+
+			}
+			if (!swapped) {
+				break;
 			}
 
 		}
