@@ -22,7 +22,7 @@ public class selection {
 
     public static int maxindex(int[] arr, int first, int last) {
         int max = first;
-        for (int i = 0; i < last; i++) {
+        for (int i = 0; i <= last; i++) {
             if (arr[max] < arr[i]) {
                 max = i;
             }
