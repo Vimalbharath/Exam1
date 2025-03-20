@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class insertion {
     public static void main(String[] args) {
-        int[] arr = { 4, 5, 1, 2, 0, 9, 8 };
+        int[] arr = { 11, 34, 5, 1, 2, -1, -2, 0, 9, 8 };
         System.out.println(Arrays.toString(arr));
         insertionsort(arr);
         System.out.println(Arrays.toString(arr));
@@ -16,6 +16,8 @@ public class insertion {
             for (int j = i; j > 0; j--) {
                 if (arr[j] < arr[j - 1]) {
                     swap(arr, j, j - 1);
+                } else {
+                    break;
                 }
             }
         }
