@@ -15,10 +15,10 @@ public class merge {
             return arr;
         }
         int s = 0;
-        int e = arr.length - 1;
-        int m = s + (e - s) / 2;
+        int e = arr.length;
+        int m = arr.length / 2;
         int[] first = mergesort(Arrays.copyOfRange(arr, s, m));
-        int[] second = mergesort(Arrays.copyOfRange(arr, m + 1, e));
+        int[] second = mergesort(Arrays.copyOfRange(arr, m, e));
         return combined(first, second);
     }
 
@@ -26,7 +26,7 @@ public class merge {
         int i = 0;
         int j = 0;
         int k = 0;
-        int[] mix = new int[i + j];
+        int[] mix = new int[first.length + second.length];
         while (i < first.length && j < second.length) {
             if (first[i] < second[j]) {
                 mix[k] = first[i];
