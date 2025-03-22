@@ -6,7 +6,7 @@ public class selection {
     public static void main(String[] args) {
         int[] arr = { 5, 4, 9, 7, 6, 2, 1 };
         System.out.println(Arrays.toString(arr));
-        selectionsort(arr, arr.length - 1, 0, 0);
+        selectionsort(arr, arr.length, 0, 0);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -25,8 +25,8 @@ public class selection {
             }
         } else {
             int temp = arr[max];
-            arr[max] = arr[row];
-            arr[row] = temp;
+            arr[max] = arr[row - 1];
+            arr[row - 1] = temp;
             selectionsort(arr, row - 1, 0, 0);
         }
 
