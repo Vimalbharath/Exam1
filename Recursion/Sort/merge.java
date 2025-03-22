@@ -16,7 +16,7 @@ public class merge {
         }
         int s = 0;
         int e = arr.length;
-        int m = arr.length / 2;
+        int m = s + (e - s) / 2;
         int[] first = mergesort(Arrays.copyOfRange(arr, s, m));
         int[] second = mergesort(Arrays.copyOfRange(arr, m, e));
         return combined(first, second);
