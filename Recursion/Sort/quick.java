@@ -11,23 +11,27 @@ public class quick {
     }
 
     public static void quicksort(int[] arr, int low, int high) {
-        if (arr.length == 1) {
+        if (low >= high) {
             return;
         }
         int s = low;
         int e = high;
         int m = s + (e - s) / 2;
         int pivot = arr[m];
-        while (s > e) {
-            if (arr[s] < pivot) {
+        while (s <= e) {
+            while (arr[s] < pivot) {
                 s++;
             }
-            if (arr[e] > pivot) {
+            while (arr[e] > pivot) {
                 e--;
             }
-            int temp = arr[s];
-            arr[s] = arr[e];
-            arr[e] = temp;
+            if (s <= e) {
+                int temp = arr[s];
+                arr[s] = arr[e];
+                arr[e] = temp;
+                s++;
+                e--;
+            }
         }
         quicksort(arr, low, e);
         quicksort(arr, s, high);
