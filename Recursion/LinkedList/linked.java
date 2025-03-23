@@ -25,6 +25,16 @@ public class linked {
         head = node;
     }
 
+    public void addLast(int val) {
+        if (head == null) {
+            addFirst(val);
+            return;
+        }
+        Node node = new Node(val);
+        tail.next = node;
+        size++;
+    }
+
     public void display() {
         Node node = head;
         while (node != null) {
@@ -39,6 +49,7 @@ public class linked {
         linked ll = new linked();
         ll.addFirst(2);
         ll.addFirst(3);
+        ll.addLast(4);
         ll.display();
     }
 }
