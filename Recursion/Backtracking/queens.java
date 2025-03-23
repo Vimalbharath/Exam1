@@ -24,13 +24,22 @@ public class queens {
     }
 
     public static boolean isSafe(boolean[][] board, int r, int c) {
-        while (c > 0) {
-            if (board[r][c]) {
-
+        for (int i = 0; i < r; r++) {
+            if (board[i][c]) {
                 return false;
             }
-
-            c--;
+        }
+        int minLeft = Math.min(r, c);
+        for (int i = 0; i < minLeft; r++) {
+            if (board[r - i][c - i]) {
+                return false;
+            }
+        }
+        int minRight = Math.min(r, board.length - 1);
+        for (int i = 0; i < minRight; r++) {
+            if (board[r - i][c + i]) {
+                return false;
+            }
         }
         return true;
     }
