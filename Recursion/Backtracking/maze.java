@@ -2,9 +2,9 @@ package Recursion.Backtracking;
 
 public class maze {
     public static void main(String[] args) {
-        boolean[][] board = { { false, false, false },
-                { false, false, false },
-                { false, false, false } };
+        boolean[][] board = { { true, true, true },
+                { true, false, true },
+                { true, true, true } };
         System.out.println(allpath(board));
     }
 
@@ -17,14 +17,21 @@ public class maze {
             System.out.println(path);
             return 1;
         }
+        if (!board[row - 1][col - 1]) {
+            return 0;
+        }
         int down = 0;
         int right = 0;
+        int diagnol = 0;
         if (row > 1) {
             down = allpath(board, row - 1, col, path + "D", count);
+        }
+        if (row > 1 && col > 1) {
+            diagnol = allpath(board, row - 1, col - 1, path + "S", count);
         }
         if (col > 1) {
             right = allpath(board, row, col - 1, path + "R", count);
         }
-        return down + right;
+        return down + right + diagnol;
     }
 }
