@@ -13,12 +13,18 @@ public class maze {
     }
 
     public static int allpath(boolean[][] board, int row, int col, String path, int count) {
-        if (row == 1 || col == 1) {
+        if (row == 1 && col == 1) {
             System.out.println(path);
             return 1;
         }
-        int down = allpath(board, row - 1, col, path + "D", count);
-        int right = allpath(board, row, col - 1, path + "R", count);
+        int down = 0;
+        int right = 0;
+        if (row > 1) {
+            down = allpath(board, row - 1, col, path + "D", count);
+        }
+        if (col > 1) {
+            right = allpath(board, row, col - 1, path + "R", count);
+        }
         return down + right;
     }
 }
