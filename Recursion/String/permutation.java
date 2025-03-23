@@ -11,9 +11,9 @@ public class permutation {
             return;
         }
         char ch = up.charAt(0);
-        for (int i = 0; i < p.length(); i++) {
-            p = p.substring(0, i) + ch + p.substring(i, p.length());
-            perm(p, up.substring(1));
+        for (int i = 0; i <= p.length(); i++) {
+
+            perm(p.substring(0, i) + ch + p.substring(i, p.length()), up.substring(1));
 
         }
     }
