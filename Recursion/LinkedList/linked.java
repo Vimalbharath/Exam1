@@ -7,6 +7,7 @@ public class linked {
 
         Node(int val) {
             this.val = val;
+            this.next = null;
         }
     }
 
@@ -18,7 +19,7 @@ public class linked {
         Node node = new Node(val);
         size++;
         if (head == null) {
-            head = tail = node;
+            tail = node;
         }
         node.next = head;
         head = node;
