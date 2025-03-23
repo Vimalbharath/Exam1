@@ -8,7 +8,7 @@ public class invert {
                 { true, true, true },
                 { true, true, true } };
         int[][] way = new int[board.length][board[0].length];
-        allpath(board, board.length, board[0].length, "", way, 1);
+        allpath(board, 0, 0, "", way, 1);
 
     }
 
