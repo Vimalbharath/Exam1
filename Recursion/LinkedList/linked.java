@@ -32,6 +32,26 @@ public class linked {
         }
         Node node = new Node(val);
         tail.next = node;
+        tail = node;
+        size++;
+    }
+
+    public void addIndex(int val, int index) {
+        if (index == 0) {
+            addFirst(val);
+            return;
+        }
+        if (index == size) {
+            addLast(val);
+            return;
+        }
+        Node node = new Node(val);
+        Node temp = head;
+        for (int i = 1; i < index; i++) {
+            temp = temp.next;
+        }
+        node.next = temp.next;
+        temp.next = node;
         size++;
     }
 
@@ -50,6 +70,8 @@ public class linked {
         ll.addFirst(2);
         ll.addFirst(3);
         ll.addLast(4);
+        ll.addIndex(100, 2);
         ll.display();
+
     }
 }
