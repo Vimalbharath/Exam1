@@ -55,6 +55,36 @@ public class linked {
         size++;
     }
 
+    public int deleteFirst() {
+        int val = head.val;
+        head = head.next;
+        if (head == null) {
+            tail = null;
+        }
+        size--;
+        return val;
+    }
+
+    public int deleteLast() {
+        if (size <= 1) {
+            return deleteFirst();
+        }
+        int val = tail.val;
+        Node temp = get(size - 2);
+        tail = temp;
+        tail.next = null;
+        size--;
+        return val;
+    }
+
+    public Node get(int index) {
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp;
+    }
+
     public void display() {
         Node node = head;
         while (node != null) {
@@ -71,6 +101,10 @@ public class linked {
         ll.addFirst(3);
         ll.addLast(4);
         ll.addIndex(100, 2);
+        ll.display();
+        ll.deleteFirst();
+        ll.display();
+        System.out.println(ll.deleteLast());
         ll.display();
 
     }
