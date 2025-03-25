@@ -44,6 +44,11 @@ public class CLL {
             return -1;
         }
         int val = head.val;
+        if (head == tail) {
+            head = null;
+            tail = null;
+            return val;
+        }
         tail.next = head.next;
         head = head.next;
         return val;
