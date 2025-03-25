@@ -39,11 +39,26 @@ public class CLL {
         }
     }
 
+    public int deleteFirst() {
+        if (head == null) {
+            return -1;
+        }
+        int val = head.val;
+        tail.next = head.next;
+        head = head.next;
+        return val;
+
+    }
+
     public static void main(String[] args) {
         CLL ll = new CLL();
         ll.insert(2);
         ll.insert(3);
         ll.insert(4);
+        ll.display();
+        ll.deleteFirst();
+        ll.deleteFirst();
+        ll.deleteFirst();
         ll.display();
 
     }
