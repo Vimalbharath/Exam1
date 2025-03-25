@@ -40,7 +40,7 @@ public class BST {
         if (val > node.val) {
             node.right = insert(node.right, val);
         }
-        node.height = Math.min(height(node.left), height(node.right));
+        node.height = Math.max(height(node.left), height(node.right)) + 1;
         return node;
     }
 
