@@ -14,7 +14,7 @@ public class CustomStack {
     }
 
     public boolean push(int val) {
-        if (data.length == ptr) {
+        if (isFull()) {
             System.out.println("Stack is full");
             return false;
         }
@@ -26,11 +26,25 @@ public class CustomStack {
     }
 
     public int pop() {
-        if (ptr == -1) {
+        if (isEmpty()) {
             System.out.println("Stack is empty");
             return -1;
         }
         return data[ptr--];
+    }
+
+    public boolean isFull() {
+        if (ptr == data.length - 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEmpty() {
+        if (ptr == -1) {
+            return true;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
