@@ -25,25 +25,29 @@ public class BST {
         return false;
     }
 
-    public Node insert(int val) {
-        return root = insert(root, val);
+    public void insert(int val) {
+        root = insert(root, val);
     }
 
     public Node insert(Node node, int val) {
         if (node == null) {
-            return node;
+            Node temp = new Node(val);
+            return temp;
         }
         if (val < node.val) {
-            Node left = insert(node.left, val);
+            node.left = insert(node.left, val);
         }
         if (val > node.val) {
-            Node right = insert(node.right, val);
+            node.right = insert(node.right, val);
         }
         node.height = Math.min(height(node.left), height(node.right));
         return node;
     }
 
     public int height(Node node) {
+        if (node == null) {
+            return -1;
+        }
         return node.height;
     }
 
