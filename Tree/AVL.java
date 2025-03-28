@@ -19,11 +19,14 @@ public class AVL {
     }
 
     public int height(Node node) {
+        if (node == null) {
+            return -1;
+        }
         return node.height;
     }
 
     public void insert(int val) {
-        insert(root, val);
+        root = insert(root, val);
     }
 
     public Node insert(Node node, int val) {
@@ -67,6 +70,8 @@ public class AVL {
         tree.insert(4);
         tree.insert(9);
         tree.insert(11);
+        tree.insert(12);
+        tree.insert(13);
         tree.inOrder();
     }
 }
