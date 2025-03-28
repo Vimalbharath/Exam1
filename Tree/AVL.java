@@ -18,6 +18,11 @@ public class AVL {
 
     }
 
+    public int value(Node node) {
+        return node.val;
+
+    }
+
     public int height(Node node) {
         if (node == null) {
             return -1;
@@ -46,7 +51,7 @@ public class AVL {
         }
 
         node.height = Math.max(height(node.left), height(node.right)) + 1;
-        return node;
+        return rotate(node);
 
     }
 
@@ -115,6 +120,25 @@ public class AVL {
         inOrder(node.right);
     }
 
+    public void display() {
+        display(root);
+    }
+
+    private void display(Node node) {
+        if (node == null) {
+            return;
+        }
+        if (node.left != null) {
+            System.out.println("Left Child of Node " + value(node) + " is : " + value(node.left));
+        }
+        if (node.right != null) {
+            System.out.println("Right Child of Node " + value(node) + " is : " + value(node.right));
+        }
+        display(node.left);
+        display(node.right);
+
+    }
+
     public static void main(String[] args) {
         AVL tree = new AVL();
         tree.insert(6);
@@ -128,5 +152,6 @@ public class AVL {
         tree.insert(22);
         tree.insert(100);
         tree.inOrder();
+        tree.display();
     }
 }
