@@ -76,22 +76,22 @@ public class Segment {
     }
 
     public void update(int index, int val) {
-        root.val = update(root, index, val);
+        root = update(root, index, val);
     }
 
-    public int update(Node node, int index, int val) {
+    public Node update(Node node, int index, int val) {
         if (index >= node.StartInterval && index <= node.EndInterval) {
             if (node.StartInterval == index && node.EndInterval == index) {
                 node.val = val;
-                return node.val;
-            } else {
-                node.left.val = update(node.left, index, val);
-                node.right.val = update(node.right, index, val);
-                node.val = node.left.val + node.right.val;
-                return node.val;
+                return node;
             }
+            node.left = update(node.left, index, val);
+            node.right = update(node.right, index, val);
+            node.val = node.left.val + node.right.val;
+            return node;
+
         }
-        return node.val;
+        return node;
     }
 
     public static void main(String[] args) {
