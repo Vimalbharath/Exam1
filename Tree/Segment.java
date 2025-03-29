@@ -75,10 +75,30 @@ public class Segment {
 
     }
 
+    public void update(int index, int val) {
+        root = update(root, index, val);
+    }
+
+    public Node update(Node node, int index, int val) {
+        if (node == null) {
+            return null;
+        }
+        if (node.StartInterval == index && node.EndInterval == index) {
+            node.val = val;
+            return node;
+        }
+        node.left = update(node.left, index, val);
+        node.right = update(node.right, index, val);
+        node.val = node.left.val + node.right.val;
+        return node;
+    }
+
     public static void main(String[] args) {
         Segment seg = new Segment();
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8 };
         seg.construct(arr);
+        seg.display();
+        seg.update(7, 0);
         seg.display();
         System.out.println(seg.query(3, 7));
     }
