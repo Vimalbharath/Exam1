@@ -5,8 +5,12 @@ import java.util.ArrayList;
 public class Heap<T extends Comparable<T>> {
     public ArrayList<T> list;
 
+    public Heap() {
+        list = new ArrayList<T>();
+    }
+
     public int parent(int index) {
-        return index - 1 / 2;
+        return (index - 1) / 2;
     }
 
     public int left(int index) {
@@ -35,7 +39,7 @@ public class Heap<T extends Comparable<T>> {
             return;
         }
         int p = parent(index);
-        if (list.get(index).compareTo(list.get(p)) < 0) {
+        if (list.get(index).compareTo(list.get(p)) > 0) {
             swap(index, p);
             upheap(p);
         }
@@ -72,6 +76,10 @@ public class Heap<T extends Comparable<T>> {
 
     }
 
+    public ArrayList<T> getlist() {
+        return list;
+    }
+
     public ArrayList<T> heapsort() {
         ArrayList<T> data = new ArrayList<T>();
         while (!list.isEmpty()) {
@@ -80,13 +88,18 @@ public class Heap<T extends Comparable<T>> {
         return data;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Heap<Integer> heap = new Heap<Integer>();
         heap.insert(34);
+        System.out.println(heap.getlist());
         heap.insert(45);
+        System.out.println(heap.getlist());
         heap.insert(22);
+        System.out.println(heap.getlist());
         heap.insert(89);
+        System.out.println(heap.getlist());
         heap.insert(76);
+        System.out.println(heap.getlist());
         System.out.println(heap.heapsort());
     }
 }
