@@ -20,11 +20,11 @@ public class Segment {
     Node root;
 
     public Node construct(int[] arr) {
-        return root = construct(arr, 0, arr.length);
+        return root = construct(arr, 0, arr.length - 1);
     }
 
     public Node construct(int[] arr, int left, int right) {
-        if (arr.length == 1) {
+        if (right == left) {
             Node node = new Node();
             node.val = arr[left];
             node.StartInterval = left;
@@ -35,7 +35,7 @@ public class Segment {
         Node node = new Node();
         node.StartInterval = left;
         node.EndInterval = right;
-        int m = left + right / 2;
+        int m = (left + right) / 2;
         node.left = construct(arr, left, m);
         node.right = construct(arr, m + 1, right);
         node.val = node.left.val + node.right.val;
@@ -53,8 +53,8 @@ public class Segment {
         int val = node.val;
         int StartInterval = node.StartInterval;
         int EndInterval = node.EndInterval;
-        System.out
-                .println("Node val is" + val + "Start interval is " + StartInterval + "End Interval is " + EndInterval);
+        System.out.println("Node val is " + val +
+                " Start interval is " + StartInterval + " End Interval is " + EndInterval);
         display(node.left);
         display(node.right);
 
