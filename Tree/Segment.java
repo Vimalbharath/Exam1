@@ -60,10 +60,30 @@ public class Segment {
 
     }
 
+    public int query(int qsi, int qei) {
+        return query(root, qsi, qei);
+    }
+
+    public int query(Node node, int qsi, int qei) {
+        if (node == null) {
+            return 0;
+        }
+        if (qsi < node.StartInterval || qei > node.EndInterval) {
+            return 0;
+        }
+        if (qsi == node.StartInterval && qei == node.EndInterval) {
+            return node.val;
+        } else {
+            return query(node.left, qsi, qei) + query(node.right, qsi, qei);
+        }
+
+    }
+
     public static void main(String[] args) {
         Segment seg = new Segment();
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8 };
         seg.construct(arr);
         seg.display();
+        System.out.println(seg.query(3, 7));
     }
 }
