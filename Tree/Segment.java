@@ -42,4 +42,28 @@ public class Segment {
         return node;
     }
 
+    public void display() {
+        display(root);
+    }
+
+    public void display(Node node) {
+        if (node == null) {
+            return;
+        }
+        int val = node.val;
+        int StartInterval = node.StartInterval;
+        int EndInterval = node.EndInterval;
+        System.out
+                .println("Node val is" + val + "Start interval is " + StartInterval + "End Interval is " + EndInterval);
+        display(node.left);
+        display(node.right);
+
+    }
+
+    public static void main(String[] args) {
+        Segment seg = new Segment();
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8 };
+        seg.construct(arr);
+        seg.display();
+    }
 }
