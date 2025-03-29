@@ -39,7 +39,7 @@ public class Heap<T extends Comparable<T>> {
             return;
         }
         int p = parent(index);
-        if (list.get(index).compareTo(list.get(p)) > 0) {
+        if (list.get(index).compareTo(list.get(p)) < 0) {
             swap(index, p);
             upheap(p);
         }
@@ -50,28 +50,35 @@ public class Heap<T extends Comparable<T>> {
             throw new Exception(" List empty");
         }
         T temp = list.get(0);
+        T last = list.remove(list.size() - 1);
         if (!list.isEmpty()) {
-            list.set(0, list.remove(list.size() - 1));
+            list.set(0, last);
             downheap(0);
         }
         return temp;
     }
 
     public void downheap(int index) {
-        if (index > list.size()) {
-            return;
-        }
+        // if (index > list.size()) {
+        // return;
+        // }
+        int min = index;
         int left = left(index);
         int right = right(index);
 
-        if (left < list.size() && list.get(index).compareTo(list.get(left)) > 0) {
-            swap(index, left);
-            downheap(left);
+        if (left < list.size() && list.get(min).compareTo(list.get(left)) > 0) {
+            min = left;
+
         }
 
-        if (right < list.size() && list.get(index).compareTo(list.get(right)) > 0) {
-            swap(index, right);
-            downheap(right);
+        if (right < list.size() && list.get(min).compareTo(list.get(right)) > 0) {
+            min = right;
+
+        }
+
+        if (min != index) {
+            swap(min, index);
+            downheap(min);
         }
 
     }
@@ -80,10 +87,10 @@ public class Heap<T extends Comparable<T>> {
         return list;
     }
 
-    public ArrayList<T> heapsort() {
+    public ArrayList<T> heapsort() throws Exception {
         ArrayList<T> data = new ArrayList<T>();
         while (!list.isEmpty()) {
-            data.add(list.remove(0));
+            data.add(this.remove());
         }
         return data;
     }
