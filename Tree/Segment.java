@@ -36,9 +36,9 @@ public class Segment {
         node.StartInterval = left;
         node.EndInterval = right;
         int m = left + right / 2;
-        Node leftnode = construct(arr, left, m);
-        Node rightnode = construct(arr, m + 1, right);
-        node.val = leftnode.val + rightnode.val;
+        node.left = construct(arr, left, m);
+        node.right = construct(arr, m + 1, right);
+        node.val = node.left.val + node.right.val;
         return node;
     }
 
