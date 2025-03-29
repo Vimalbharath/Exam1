@@ -65,14 +65,10 @@ public class Segment {
     }
 
     public int query(Node node, int qsi, int qei) {
-        if (node == null) {
-            return 0;
-        }
-        if (qsi < node.StartInterval || qei > node.EndInterval) {
-            return 0;
-        }
-        if (qsi == node.StartInterval && qei == node.EndInterval) {
+        if (qsi <= node.StartInterval && qei >= node.EndInterval) {
             return node.val;
+        } else if (qei < node.StartInterval || qsi > node.EndInterval) {
+            return 0;
         } else {
             return query(node.left, qsi, qei) + query(node.right, qsi, qei);
         }
