@@ -11,6 +11,8 @@ public class AdjacencyList {
 
     public AdjacencyList(int noofvertices, boolean directed) {
         graph = new ArrayList<LinkedList<Integer>>(noofvertices);
+        for (int j = 0; j < noofvertices; j++)
+            graph.add(new LinkedList<Integer>());
         this.directed = directed;
     }
 
@@ -29,7 +31,7 @@ public class AdjacencyList {
         System.out.println("Printing adjacency list");
         for (LinkedList<Integer> list : graph) {
             for (int val : list) {
-                System.out.print(" " + val + " ");
+                System.out.print("->" + val + " ");
             }
             System.out.println();
 
