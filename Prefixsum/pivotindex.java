@@ -19,7 +19,7 @@ public class pivotindex {
 
         for (int i = 0; i < size; i++) {
             if (prefixsum[i] == suffixsum[i]) {
-                ans = i;
+                return i;
             }
 
         }
