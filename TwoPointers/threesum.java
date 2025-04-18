@@ -5,15 +5,16 @@ import java.util.Arrays;
 public class threesum {
     public static boolean three(int[] arr, int target) {
         Arrays.sort(arr);
-        for (int i = 0; i < arr.length; i++) {
-            int left = 0;
+        for (int i = 0; i < arr.length - 2; i++) {
+            int left = i + 1;
             int right = arr.length - 1;
+            int reqsum = target - arr[i];
             while (left < right) {
-                int sum = arr[i] + arr[left] + arr[right];
-                if (sum == target) {
+                int sum = arr[left] + arr[right];
+                if (sum == reqsum) {
                     return true;
                 }
-                if (sum > target) {
+                if (sum > reqsum) {
                     right--;
                 } else {
                     left++;
