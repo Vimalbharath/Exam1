@@ -1,8 +1,25 @@
 package TwoPointers;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class twosumindex {
+    public int[] twoSumhashextra(int[] nums, int target) {
+        Map<Integer, Integer> numMap = new HashMap<>();
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            int complement = target - nums[i];
+            if (numMap.containsKey(complement)) {
+                return new int[] { numMap.get(complement), i };
+            }
+            numMap.put(nums[i], i);
+        }
+
+        return new int[] {}; // No solution found
+    }
+
     public int[] twoSumhash(int[] a, int t) {
         var m = new java.util.HashMap<Integer, Integer>();
         for (int i = 0; i < a.length; i++) {
