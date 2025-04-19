@@ -4,22 +4,27 @@ package Prefixsum;
 public class maxscore {
 
     public int maxScore(String s) {
-        int[] prefix=new int[s.length];
-        for(int i=0;i<s.length;i++){
-            prefix[i]=int(s.charAt(i));
+        int[] prefix = new int[s.length()];
+        // for (int i = 0; i < s.length(); i++) {
+        // prefix[i] = (int) (s.charAt(i));
+        // }
+        int ones = 0;
+        for (int i = prefix.length - 1; i >= 0; i--) {
+            prefix[i] = ones;
+            if (s.charAt(i) == '1') {
+                ones++;
+            }
+
         }
-         for(int i=1;i<prefix.length;i++){
-            prefix[i]+=prefix[i-1];
-        }
-        int max=Integer.MIN;
-        int zero=0;
-         for(int i=0;i<s.length;i++){
-           if(s.charAt(i)=='0'){
+        int max = Integer.MIN_VALUE;
+        int zero = 0;
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == '0') {
                 zero++;
-           }
-           if(zero+prefix[i]>max){
-            max=zero+prefix[i];
-           }
+            }
+            if ((zero + prefix[i]) > max) {
+                max = zero + prefix[i];
+            }
         }
         return max;
     }
