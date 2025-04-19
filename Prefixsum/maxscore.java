@@ -5,26 +5,39 @@ public class maxscore {
 
     public int maxScore(String s) {
         int[] prefix = new int[s.length()];
-        // for (int i = 0; i < s.length(); i++) {
-        // prefix[i] = (int) (s.charAt(i));
-        // }
-        int ones = 0;
-        for (int i = prefix.length - 1; i >= 0; i--) {
-            prefix[i] = ones;
+        for (int i = 0; i < s.length(); i++) {
+
             if (s.charAt(i) == '1') {
-                ones++;
+                prefix[i] = 1;
+            } else {
+                prefix[i] = 0;
             }
+        }
+
+        for (int i = prefix.length - 1; i > 0; i--) {
+            prefix[i - 1] = prefix[i - 1] + prefix[i];
 
         }
         int max = Integer.MIN_VALUE;
         int zero = 0;
+        int lastone=0;
+        int lastzero=0;
         for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == '1') {
+                 lastone=i;
+            }
+
             if (s.charAt(i) == '0') {
+               
                 zero++;
+                 lastzero=i;
             }
             if ((zero + prefix[i]) > max) {
                 max = zero + prefix[i];
             }
+        }
+        if(zero==0 || lastone<lastzero){
+            return max-1;
         }
         return max;
     }
