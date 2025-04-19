@@ -6,7 +6,7 @@ public class minval {
         int[] prefix = new int[nums.length];
         prefix = nums;
         prefix[0] = nums[0];
-        for (int i = 1; i < prefix.length - 1; i++) {
+        for (int i = 1; i < prefix.length; i++) {
             prefix[i] += prefix[i - 1];
         }
         int min = Integer.MAX_VALUE;
@@ -14,6 +14,9 @@ public class minval {
             if (prefix[i] < min) {
                 min = prefix[i];
             }
+        }
+        if (min > 0) {
+            return min;
         }
         return Math.abs(min) + 1;
 
