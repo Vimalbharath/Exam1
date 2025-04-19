@@ -18,12 +18,10 @@ public class varsubarray {
         for (int i = 0; i < nums.length; i++) {
             int start = Math.max(0, i - nums[i]);
             for (int j = start; j <= i; j++) {
-                ans = ans + nums[start];
+                ans += nums[j];
             }
         }
-        if (nums.length == 1) {
-            return nums[0];
-        }
-        return ans - 1;
+
+        return ans;
     }
 }
