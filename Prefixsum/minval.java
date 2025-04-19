@@ -16,7 +16,7 @@ public class minval {
             }
         }
         if (min > 0) {
-            return min;
+            return 1;
         }
         return Math.abs(min) + 1;
 
