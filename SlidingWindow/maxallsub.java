@@ -19,6 +19,9 @@ public class maxallsub {
         int j = 0;
 
         while (j < n) {
+            while (dq.size() > 0 && dq.peek() < arr[j]) {
+                dq.pop();
+            }
             dq.add(arr[j]);
             if (j - i + 1 < k) {
 
