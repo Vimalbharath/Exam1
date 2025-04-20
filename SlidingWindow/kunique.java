@@ -16,7 +16,7 @@ public class kunique {
 
         while (j < n) {
             char ch = s.charAt(j);
-            map.put(ch, map.getOrDefault(ch, 1) + 1);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
             int count = map.size();
 
             if (count < k) {
@@ -33,10 +33,11 @@ public class kunique {
             if (count > k) {
                 char cha = s.charAt(i);
 
-                if (map.get(cha) == 1)
+                if (map.get(cha) == 1) {
                     map.remove(cha);
-                else
+                } else {
                     map.put(cha, map.get(cha) - 1);
+                }
                 i++;
             }
         }
@@ -47,6 +48,6 @@ public class kunique {
         String s = "aabacbebebe";
         int k = 3;
 
-        System.out.print(longestKSubstr(s, k));
+        System.out.println(longestKSubstr(s, k));
     }
 }
