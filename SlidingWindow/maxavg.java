@@ -7,11 +7,11 @@ public class maxavg {
         int n = nums.length;
         int j = 0;
         int sum = 0;
-        double maxsum = 0;
-        double avg = 0;
+        double maxsum = Double.NEGATIVE_INFINITY;
+        double avg = Double.NEGATIVE_INFINITY;
         while (j < n) {
             sum += nums[j];
-            avg = sum / (j - i + 1);
+            avg = (double) sum / (j - i + 1);
             if (j - i + 1 < k) {
 
                 j++;
