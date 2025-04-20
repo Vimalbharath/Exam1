@@ -16,7 +16,7 @@ public class fixedsum {
                 if (maxsum < sum) {
                     maxsum = sum;
                 }
-                i++;
+
                 j++;
 
             }
