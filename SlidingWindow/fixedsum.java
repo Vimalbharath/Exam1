@@ -5,25 +5,28 @@ public class fixedsum {
         int i = 0;
         int j = 0;
         int sum = 0;
-        int windowsum = 0;
+        int maxsum = 0;
         while (j < n) {
-            if (j - i < k) {
-                sum += arr[j];
+            sum += arr[j];
+            if (j - i + 1 < k) {
+
                 j++;
-            }
-            if (j - i == k) {
-                windowsum = sum + arr[j];
-                if (windowsum > sum) {
+            } else if (j - i + 1 == k) {
 
+                if (maxsum < sum) {
+                    maxsum = sum;
                 }
+                i++;
+                j++;
 
             }
-            if (j - i > k) {
+            if (j - i + 1 > k) {
                 sum -= arr[i];
                 i++;
+
             }
         }
-        return sum;
+        return maxsum;
     }
 
     public static void main(String[] args) {
