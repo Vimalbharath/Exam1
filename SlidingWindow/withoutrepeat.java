@@ -27,20 +27,19 @@ public class withoutrepeat {
                 i++;
                 // j++;
             }
-            if (count == j - i + 1) {
-                arrl = j - i + 1;
-                if (arrl > maxarrl) {
-                    maxarrl = arrl;
-                }
-                j++;
+
+            arrl = j - i + 1;
+            if (arrl > maxarrl) {
+                maxarrl = arrl;
             }
+            j++;
 
         }
         return maxarrl;
     }
 
     public static void main(String[] args) {
-        String s = "asdfghjkloiuytrewqzxcvbnm";
+        String s = "arwvivbgvtybtnudd";
         System.out.println(longestUniqueSubstr(s));
     }
 }
