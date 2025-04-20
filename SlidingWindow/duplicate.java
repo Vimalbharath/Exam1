@@ -12,29 +12,17 @@ public class duplicate {
         int j = 0;
         Set<Integer> set = new HashSet<Integer>();
         while (j < n) {
-
-            if (j - i + 1 < k) {
-                set.add(nums[j]);
-                j++;
-                if (j < n) {
-                    if (set.contains(nums[j]))
-                        return true;
-                }
-
-            }
-            // if (j - i + 1 == k) {
-
-            // if (set.contains(nums[j]))
-            // return true;
-
-            // j++;
-
-            // }
-            if (j - i + 1 >= k) {
+            if (j - i > k) { // Correction: Shrink window when size exceeds k
                 set.remove(nums[i]);
                 i++;
-
             }
+
+            if (set.contains(nums[j])) { // Correction: Check for duplicate before adding
+                return true;
+            }
+
+            set.add(nums[j]);
+            j++;
         }
         return false;
     }
