@@ -7,97 +7,87 @@ public class Trie {
         this.root = new TrieNode();
     }
 
-    public class TrieNode {
+    public static class TrieNode {
         public TrieNode[] childNode;
         public int wordCount;
         private boolean isEndOfWord;
 
         public TrieNode() {
             childNode = new TrieNode[26];
-            // This will keep track of number of strings that
-            // are stored in the Trie from root node to any Trie
-            // node.
             wordCount = 0;
+            isEndOfWord = false; // Initialize isEndOfWord to false
         }
-        // TrieNode root = new TrieNode();
     }
 
-    static void insert(TrieNode root, String key) {
-        // Initialize the currentNode pointer with the root node
+    public void insert(String key) { // Modified to be a non-static method
         TrieNode currentNode = root;
 
         for (int i = 0; i < key.length(); i++) {
             int index = key.charAt(i) - 'a';
 
-            // Check if the node exist for the current
-            // character in the Trie.
             if (currentNode.childNode[index] == null) {
-
-                // Keep the reference for the newly created
-                // node.
                 currentNode.childNode[index] = new TrieNode();
             }
-
-            // Now, move the current node pointer to the newly
-            // created node.
             currentNode = currentNode.childNode[index];
         }
-
-        // Increment the wordEndCount for the last currentNode
-        // pointer this implies that there is a string ending at
-        // currentNode.
         currentNode.wordCount++;
+        currentNode.isEndOfWord = true; // Mark the end of the word
     }
 
-    public boolean isPrefixExist(TrieNode root, String key) {
-        // Initialize the currentNode pointer
-        // with the root node
+    public boolean isPrefixExist(String key) { // Modified to be a non-static method
         TrieNode currentNode = root;
 
-        // Iterate across the length of the string
         for (char c : key.toCharArray()) {
-
-            // Check if the node exist for the current
-            // character in the Trie.
             if (currentNode.childNode[c - 'a'] == null) {
-
-                // Given word as a prefix does not exist in Trie
                 return false;
             }
-
-            // Move the currentNode pointer to the already
-            // existing node for current character.
             currentNode = currentNode.childNode[c - 'a'];
         }
-
-        // Prefix exist in the Trie
         return true;
     }
 
-    // Returns true if key presents in trie, else false
-    static boolean search(TrieNode root, String key) {
-        // Initialize the currentNode
-        // with the root node
+    public boolean search(String key) { // Modified to be a non-static method
         TrieNode currentNode = root;
 
         for (int i = 0; i < key.length(); i++) {
             int index = key.charAt(i) - 'a';
-
-            // Check if the node exist for the current
-            // character in the Trie.
-            if (currentNode.childNode[index] == null)
+            if (currentNode.childNode[index] == null) {
                 return false;
-
-            // Move the currentNode to the already
-            // existing node for current character.
+            }
             currentNode = currentNode.childNode[index];
         }
-
-        return (currentNode.isEndOfWord);
+        return currentNode.isEndOfWord;
     }
 
     public static void main(String[] args) {
+        Trie trie = new Trie();
+        String[] keys = { "the", "a", "there", "answer", "any",
+                "by", "bye", "their" };
 
+        System.out.println("Keys to insert:");
+        for (String key : keys) {
+            System.out.print(key + " ");
+            trie.insert(key);
+        }
+        System.out.println("\n");
+
+        System.out.println("Search results:");
+        System.out.println("the -> " + trie.search("the")); // true
+        System.out.println("these -> " + trie.search("these")); // false
+        System.out.println("their -> " + trie.search("their")); // true
+        System.out.println("thaw -> " + trie.search("thaw")); // false
+        System.out.println("a -> " + trie.search("a")); // true
+        System.out.println("answer -> " + trie.search("answer")); // true
+        System.out.println("an -> " + trie.search("an")); // false (as 'an' is a prefix, not a complete word in this
+                                                          // trie)
+
+        System.out.println("\nPrefix check:");
+        System.out.println("th -> " + trie.isPrefixExist("th")); // true
+        System.out.println("the -> " + trie.isPrefixExist("the")); // true
+        System.out.println("these -> " + trie.isPrefixExist("these"));// true (as 'these' starts with 'the')
+        System.out.println("ans -> " + trie.isPrefixExist("ans")); // true (as 'answer' starts with 'ans')
+        System.out.println("by -> " + trie.isPrefixExist("by")); // true
+        System.out.println("b -> " + trie.isPrefixExist("b")); // true
+        System.out.println("ap -> " + trie.isPrefixExist("ap")); // false
     }
-
 }
