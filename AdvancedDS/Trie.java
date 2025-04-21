@@ -107,10 +107,16 @@ public class Trie {
         // If the recursive call returned true (indicating the child node might be
         // deleted)
         if (shouldDeleteCurrentNode) {
-            currentNode.childNode[charIndex] = null; // Remove the link to the child node
-            // Return true if the current node has no other children and its word count is 0
-            // This signals its parent to consider deletion
-            return hasNoChildren(currentNode) && currentNode.wordCount == 0;
+            // Only delete the child node if the current node is not marking the end of
+            // another word
+            if (currentNode.wordCount == 0) {
+                currentNode.childNode[charIndex] = null; // Remove the link to the child node
+                // Return true if the current node becomes a candidate for deletion
+                return hasNoChildren(currentNode);
+            } else {
+                // Current node marks the end of another word, so stop deletion here
+                return false;
+            }
         }
 
         // If no deletion happened down the path, return false
@@ -135,48 +141,47 @@ public class Trie {
         System.out.println("Keys to insert:");
         for (String key : keys) {
             System.out.print(key + " ");
-            trie.insert(key);
+            trie.insert(key); // Insert each key into the Trie
         }
         System.out.println("\n");
 
         System.out.println("Search results:");
-        System.out.println("the -> " + trie.search("the")); // true
-        System.out.println("these -> " + trie.search("these")); // false
-        System.out.println("their -> " + trie.search("their")); // true
-        System.out.println("thaw -> " + trie.search("thaw")); // false
-        System.out.println("a -> " + trie.search("a")); // true
-        System.out.println("answer -> " + trie.search("answer")); // true
-        System.out.println("an -> " + trie.search("an")); // false
+        System.out.println("the -> " + trie.search("the")); // (should be true)
+        System.out.println("these -> " + trie.search("these")); // (should be false)
+        System.out.println("their -> " + trie.search("their")); // (should be true)
+        System.out.println("thaw -> " + trie.search("thaw")); // (should be false)
+        System.out.println("a -> " + trie.search("a")); // (should be true)
+        System.out.println("answer -> " + trie.search("answer")); // (should be true)
+        System.out.println("an -> " + trie.search("an")); // (should be false, as it's a prefix)
 
         System.out.println("\nPrefix check:");
-        System.out.println("th -> " + trie.isPrefixExist("th")); // true
-        System.out.println("the -> " + trie.isPrefixExist("the")); // true
-        System.out.println("these -> " + trie.isPrefixExist("these"));// true
-        System.out.println("ans -> " + trie.isPrefixExist("ans")); // true
-        System.out.println("by -> " + trie.isPrefixExist("by")); // true
-        System.out.println("b -> " + trie.isPrefixExist("b")); // true
-        System.out.println("ap -> " + trie.isPrefixExist("ap")); // false
+        System.out.println("th -> " + trie.isPrefixExist("th")); // (should be true)
+        System.out.println("the -> " + trie.isPrefixExist("the")); // (should be true)
+        System.out.println("these -> " + trie.isPrefixExist("these"));// (should be true)
+        System.out.println("ans -> " + trie.isPrefixExist("ans")); // (should be true)
+        System.out.println("by -> " + trie.isPrefixExist("by")); // (should be true)
+        System.out.println("b -> " + trie.isPrefixExist("b")); // (should be true)
+        System.out.println("ap -> " + trie.isPrefixExist("ap")); // (should be false)
 
         System.out.println("\nDeletion tests:");
         System.out.println("\nDeleting key: there");
-        trie.deleteKey("there");
-        System.out.println("Search 'there' after deletion: " + trie.search("there")); // false
-        System.out.println("Prefix 'the' after deleting 'there': " + trie.isPrefixExist("the")); // true
-        System.out.println("Prefix 'thei' after deleting 'there': " + trie.isPrefixExist("thei")); // true
+        trie.deleteKey("there"); // Delete the word "there"
+        System.out.println("Search 'there' after deletion: " + trie.search("there")); // (should be false)
+        System.out.println("Prefix 'the' after deleting 'there': " + trie.isPrefixExist("the")); // (should be true)
 
         System.out.println("\nDeleting key: the");
-        trie.deleteKey("the");
-        System.out.println("Search 'the' after deletion: " + trie.search("the")); // false
-        System.out.println("Prefix 'th' after deleting 'the': " + trie.isPrefixExist("th")); // true
+        trie.deleteKey("the"); // Delete the word "the"
+        System.out.println("Search 'the' after deletion: " + trie.search("the")); // (should be false)
+        System.out.println("Prefix 'th' after deleting 'the': " + trie.isPrefixExist("th")); // (should be true)
 
         System.out.println("\nDeleting key: a");
-        trie.deleteKey("a");
-        System.out.println("Search 'a' after deletion: " + trie.search("a")); // false
-        System.out.println("Prefix 'a' after deleting 'a': " + trie.isPrefixExist("a")); // false
+        trie.deleteKey("a"); // Delete the word "a"
+        System.out.println("Search 'a' after deletion: " + trie.search("a")); // (should be false)
+        System.out.println("Prefix 'a' after deleting 'a': " + trie.isPrefixExist("a")); // (should be false)
 
         System.out.println("\nDeleting key: answer");
-        trie.deleteKey("answer");
-        System.out.println("Search 'answer' after deletion: " + trie.search("answer")); // false
-        System.out.println("Prefix 'ans' after deleting 'answer': " + trie.isPrefixExist("ans")); // true
+        trie.deleteKey("answer"); // Delete the word "answer"
+        System.out.println("Search 'answer' after deletion: " + trie.search("answer")); // (should be false)
+        System.out.println("Prefix 'ans' after deleting 'answer': " + trie.isPrefixExist("ans")); // (should be true)
     }
 }
