@@ -59,30 +59,44 @@ public class Trie {
         return deleteHelper(root, word, 0);
     }
 
-private boolean deleteHelper(TrieNode currentNode, String word, int index) {
-    if (index == word.length()) {
-        if (currentNode.wordCount > 0) {
-            currentNode.wordCount--;
-            currentNode.isEndOfWord = false; // Unmark as end of word
-            return hasNoChildren(currentNode) && currentNode.wordCount == 0;
+    private boolean deleteHelper(TrieNode currentNode, String word, int index) {
+        if (index == word.length()) {
+            if (currentNode.wordCount > 0) {
+                currentNode.wordCount--;
+                currentNode.isEndOfWord = false;
+                return hasNoChildren(currentNode) && currentNode.wordCount == 0;
+            }
+            return false;
         }
-        return false; // Word not found
+
+        int charIndex = word.charAt(index) - 'a';
+        if (currentNode.childNode[charIndex] == null) {
+            return false;
+        }
+
+        boolean shouldDeleteChild = deleteHelper(currentNode.childNode[charIndex], word, index + 1);
+
+        if (shouldDeleteChild) {
+            if (currentNode.wordCount == 0) {
+                int nonNullChildren = 0;
+                for (int i = 0; i < 26; i++) {
+                    if (currentNode.childNode[i] != null) {
+                        nonNullChildren++;
+                    }
+                }
+                if (nonNullChildren <= 1) {
+                    currentNode.childNode[charIndex] = null;
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        return false;
     }
-
-    int charIndex = word.charAt(index) - 'a';
-    if (currentNode.childNode[charIndex] == null) {
-        return false; // Word not found
-    }
-
-    boolean shouldDeleteChild = deleteHelper(currentNode.childNode[charIndex], word, index + 1);
-
-    if (shouldDeleteChild) {
-        currentNode.childNode[charIndex] = null;
-        return currentNode.wordCount == 0 && hasNoChildren(currentNode);
-    }
-
-    return false;
-}
 
     private boolean hasNoChildren(TrieNode node) {
         for (int i = 0; i < 26; i++) {
@@ -95,8 +109,8 @@ private boolean deleteHelper(TrieNode currentNode, String word, int index) {
 
     public static void main(String[] args) {
         Trie trie = new Trie();
-        String[] keys = { "the", "a", "there", "answer", "any",
-                "by", "bye", "their" };
+        String[] keys = {"the", "a", "there", "answer", "any",
+                         "by", "bye", "their"};
 
         System.out.println("Keys to insert:");
         for (String key : keys) {
