@@ -44,7 +44,46 @@ public class TrieGFG {
     }
 
     public boolean delete(String key) {
-        return true;
+        TrieNode currentNode = root;
+        TrieNode lastBranchNode = null;
+        char lastBranchCharacter = 'a';
+        for (int i = 0; i < key.length(); i++) {
+            int index = key.charAt(i) - 'a';
+            if (currentNode.childNode[index] == null) {
+                return false;
+            } else {
+                int count = 0;
+                for (int j = 0; j < 26; j++) {
+                    if (currentNode.childNode[j] != null) {
+                        count++;
+                    }
+                }
+                if (count > 1) {
+                    lastBranchNode = currentNode;
+                    lastBranchCharacter = key.charAt(i);
+                }
+            }
+            currentNode = currentNode.childNode[index];
+        }
+
+        int count = 0;
+        for (int j = 0; j < 26; j++) {
+            if (currentNode.childNode[j] != null) {
+                count++;
+            }
+        }
+        if (count > 1) {
+            currentNode.wordCount--;
+        }
+
+        if (lastBranchNode != null) {
+            lastBranchNode.childNode[lastBranchCharacter - 'a'] = null;
+            return true;
+        } else {
+            root.childNode[key.charAt(0) - 'a'] = null;
+            return true;
+        }
+
     }
 
     public static void main(String[] args) {
@@ -56,6 +95,10 @@ public class TrieGFG {
         trie.insert("bharath");
         System.out.println(trie.search("bharath"));
         System.out.println(trie.search("hi"));
+        System.out.println(trie.delete("bharath"));
+        System.out.println(trie.delete("hi"));
+        System.out.println(trie.delete("bharath"));
+        System.out.println(trie.delete("vimal"));
 
     }
 
