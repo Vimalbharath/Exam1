@@ -43,7 +43,7 @@ public class TrieGFG {
         return currentNode.wordCount > 0;
     }
 
-    public boolean delete(String key) {
+    public boolean deleteKey(String key) {
         TrieNode currentNode = root;
         TrieNode lastBranchNode = null;
         char lastBranchCharacter = 'a';
@@ -88,18 +88,66 @@ public class TrieGFG {
 
     public static void main(String[] args) {
         TrieGFG trie = new TrieGFG();
-        trie.insert("vimal");
-        trie.insert("vishnu");
-        trie.insert("vignesh");
-        trie.insert("ram");
-        trie.insert("bharath");
-        System.out.println(trie.search("bharath"));
-        System.out.println(trie.search("hi"));
-        System.out.println(trie.delete("bharath"));
-        System.out.println(trie.delete("hi"));
-        System.out.println(trie.delete("bharath"));
-        System.out.println(trie.delete("vimal"));
+        String[] keys = { "the", "a", "there", "answer", "any",
+                "by", "bye", "their" };
 
+        System.out.println("Keys to insert:");
+        for (String key : keys) {
+            System.out.print(key + " ");
+            trie.insert(key); // Insert each key into the Trie
+        }
+        System.out.println("\n");
+
+        System.out.println("Search results:");
+        System.out.println("the -> " + trie.search("the")); // Search for "the"
+        System.out.println("there -> " + trie.search("there")); // Search for "there"
+        System.out.println("their -> " + trie.search("their")); // Search for "their"
+        System.out.println("by -> " + trie.search("by")); // Search for "by"
+        System.out.println("bye -> " + trie.search("bye")); // Search for "bye"
+        System.out.println("a -> " + trie.search("a")); // Search for "a"
+        System.out.println("answer -> " + trie.search("answer")); // Search for "answer"
+        System.out.println("any -> " + trie.search("any")); // Search for "any"
+        System.out.println("an -> " + trie.search("an")); // Search for "an" (prefix)
+
+        // System.out.println("\nPrefix check:");
+        // System.out.println("th -> " + trie.isPrefixExist("th")); // Check if "th" is
+        // a prefix
+        // System.out.println("the -> " + trie.isPrefixExist("the")); // Check if "the"
+        // is a prefix
+        // System.out.println("these -> " + trie.isPrefixExist("these"));// Check if
+        // "these" is a prefix
+        // System.out.println("ans -> " + trie.isPrefixExist("ans")); // Check if "ans"
+        // is a prefix
+        // System.out.println("by -> " + trie.isPrefixExist("by")); // Check if "by" is
+        // a prefix
+        // System.out.println("b -> " + trie.isPrefixExist("b")); // Check if "b" is a
+        // prefix
+        // System.out.println("ap -> " + trie.isPrefixExist("ap")); // Check if "ap" is
+        // a prefix
+
+        System.out.println("\nDeletion tests:");
+        System.out.println("\nDeleting key: there");
+        trie.deleteKey("there"); // Delete "there"
+        System.out.println("Search 'there' after deletion: " + trie.search("there")); // Should be false
+        // System.out.println("Prefix 'the' after deleting 'there': " +
+        // trie.isPrefixExist("the")); // Should be true
+
+        System.out.println("\nDeleting key: the");
+        trie.deleteKey("the"); // Delete "the"
+        System.out.println("Search 'the' after deletion: " + trie.search("the")); // Should be false
+        // System.out.println("Prefix 'th' after deleting 'the': " +
+        // trie.isPrefixExist("th")); // Should be true
+
+        System.out.println("\nDeleting key: a");
+        trie.deleteKey("a"); // Delete "a"
+        System.out.println("Search 'a' after deletion: " + trie.search("a")); // Should be false
+        // System.out.println("Prefix 'a' after deleting 'a': " +
+        // trie.isPrefixExist("a")); // Should be false
+
+        System.out.println("\nDeleting key: answer");
+        trie.deleteKey("answer"); // Delete "answer"
+        System.out.println("Search 'answer' after deletion: " + trie.search("answer")); // Should be false
+        // System.out.println("Prefix 'ans' after deleting 'answer': " +
+        // trie.isPrefixExist("ans")); // Should be true
     }
-
 }
