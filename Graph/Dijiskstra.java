@@ -28,7 +28,7 @@ public class Dijiskstra {
     public static void main(String[] args) {
         int[][] matrix = {
                 { 0, 2, 3, 4 },
-                { 2, 0, 0, 0 },
+                { 2, 0, 0, 5 },
                 { 3, 0, 0, 0 },
                 { 4, 5, 0, 0 }
         };
