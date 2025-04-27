@@ -67,23 +67,24 @@ public class topolist {
         }
 
         Queue<Integer> list = new LinkedList<Integer>();
-        int count = 0;
-        while (!(count == V)) {
-            int sss = list.size();
-            System.out.println(sss);
-            for (int i = 0; i < V; i++) {
-                if (indegree[i] == 0) {
-                    list.add(i);
-                    count++;
-                    for (int b : adjListArray[i]) {
-                        indegree[b]--;
-                    }
+
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) {
+                list.offer(i);
+            }
+        }
+
+        while (!list.isEmpty()) {
+            int a = list.poll();
+            System.out.println(a);
+
+            for (int b : adjListArray[a]) {
+                indegree[b]--;
+                if (indegree[b] == 0) {
+                    list.add(b);
                 }
             }
 
-        }
-        while (!list.isEmpty()) {
-            System.out.println(list.poll());
         }
 
     }
