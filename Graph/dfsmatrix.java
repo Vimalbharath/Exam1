@@ -7,8 +7,8 @@ public class dfsmatrix {
         System.out.println(start);
         for (int i = 0; i < graph.length; i++) {
             int v = graph[start][i];
-            if (visited[v] == 0) {
-                dfs(graph, v, visited);
+            if (visited[i] == 0 && v == 1) {
+                dfs(graph, i, visited);
             }
 
         }
