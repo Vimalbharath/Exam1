@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 import Graph.Dlist.Graph;
@@ -57,7 +58,7 @@ public class topolist {
         st.push(start);
     }
 
-    public ArrayList<Integer> khan() {
+    public void khan() {
         int[] indegree = new int[V];
         for (List<Integer> a : adjListArray) {
             for (int b : a) {
@@ -65,18 +66,26 @@ public class topolist {
             }
         }
 
-        ArrayList<Integer> list = new ArrayList<>();
-        while (list.size() != V) {
+        Queue<Integer> list = new LinkedList<Integer>();
+        int count = 0;
+        while (!(count == V)) {
+            int sss = list.size();
+            System.out.println(sss);
             for (int i = 0; i < V; i++) {
                 if (indegree[i] == 0) {
                     list.add(i);
+                    count++;
                     for (int b : adjListArray[i]) {
                         indegree[b]--;
                     }
                 }
             }
+
         }
-        return list;
+        while (!list.isEmpty()) {
+            System.out.println(list.poll());
+        }
+
     }
 
     public static void main(String[] args) {
@@ -92,10 +101,7 @@ public class topolist {
 
         System.out.println("Topological sorts");
         graph.topo();
-        ArrayList<Integer> ans = graph.khan();
-        for (int a : ans) {
-            System.out.println(a);
-        }
+        graph.khan();
 
     }
 }
