@@ -67,9 +67,11 @@ public class Dlist {
                         int u = q.poll();
                         System.out.println(u);
                         for (int j = 0; j < adjList.get(u).size(); j++) {
-                            int v = adjList.get(u).get(i).first;
-                            q.add(v);
-                            visited[v] = 1;
+                            int v = adjList.get(u).get(j).first;
+                            if (visited[j] == 0) {
+                                q.add(v);
+                                visited[v] = 1;
+                            }
                         }
                     }
                 }
