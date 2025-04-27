@@ -1,5 +1,8 @@
 package Graph;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class AdajacencyMatrix {
     public int[][] data;
 
@@ -36,11 +39,35 @@ public class AdajacencyMatrix {
         }
     }
 
+    public void bfs() {
+        int[] visited = new int[data.length];
+        for (int i = 0; i < data.length; i++) {
+            if (visited[i] != 0) {
+                visited[i] = 1;
+                Queue<Integer> q = new LinkedList<>();
+                q.add(i);
+                while (!q.isEmpty()) {
+                    int a = q.poll();
+                    System.out.println(a + "->");
+                    for (int j = 0; j < data.length; j++) {
+                        if (data[a][j] != 0 && visited[j] == 0) {
+                            visited[j] = 1;
+                            q.add(j);
+                        }
+                    }
+                }
+
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
         AdajacencyMatrix graph = new AdajacencyMatrix(5, false);
         graph.addedge(2, 4);
         graph.addedge(2, 1);
         graph.printgraph();
+        graph.bfs();
     }
 
 }
