@@ -15,17 +15,20 @@ public class dfslist {
             if (visited[i] == 0) {
                 visited[i] = 1;
                 dfs(adj, visited, i);
-                System.out.println(i);
+
             }
         }
 
     }
 
     public static void dfs(ArrayList<ArrayList<Integer>> adj, int[] visited, int i) {
-
-        if (visited[i] == 0) {
-            visited[i] = 1;
-            System.out.println(i);
+        System.out.println(i);
+        for (int j = 0; j < adj.get(i).size(); j++) {
+            int v = adj.get(i).get(j);
+            if (visited[v] == 0) {
+                visited[v] = 1;
+                dfs(adj, visited, v);
+            }
         }
 
     }
