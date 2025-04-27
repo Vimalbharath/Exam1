@@ -3,7 +3,9 @@ package Graph;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Dlist {
 
@@ -54,6 +56,26 @@ public class Dlist {
             }
         }
 
+        public void bfs() {
+            int[] visited = new int[numVertices];
+            for (int i = 0; i < numVertices; i++) {
+                if (visited[i] == 0) {
+                    Queue<Integer> q = new LinkedList<>();
+                    q.add(i);
+                    visited[i] = 1;
+                    while (!q.isEmpty()) {
+                        int u = q.poll();
+                        System.out.println(u);
+                        for (int j = 0; j < adjList.get(u).size(); j++) {
+                            int v = adjList.get(u).get(i).first;
+                            q.add(v);
+                            visited[v] = 1;
+                        }
+                    }
+                }
+            }
+        }
+
         public int[] dijilist() {
             int[] dist = new int[numVertices];
             for (int i = 0; i < dist.length; i++) {
@@ -92,6 +114,7 @@ public class Dlist {
 
         System.out.println("Adjacency List representation of the graph:");
         graph.printGraph();
+        graph.bfs();
 
         System.out.println(Arrays.toString(graph.dijilist()));
 
@@ -110,6 +133,7 @@ public class Dlist {
 
         System.out.println("Adjacency List representation of the graph (Test Case 2):");
         graph2.printGraph();
+        graph2.bfs();
         System.out.println("Dijkstra's shortest distances from vertex 0 (Test Case 2):");
         System.out.println(Arrays.toString(graph2.dijilist()));
     }
