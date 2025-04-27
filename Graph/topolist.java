@@ -2,6 +2,7 @@ package Graph;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 import Graph.Dlist.Graph;
 
@@ -31,6 +32,29 @@ public class topolist {
 
     }
 
+    public void topo() {
+        int[] visited = new int[V];
+        Stack<Integer> st = new Stack<>();
+        for (int i = 0; i < V; i++) {
+            if (visited[i] == 0) {
+                topo(visited, i, st);
+            }
+        }
+        while (!st.empty()) {
+            System.out.println(st.pop());
+        }
+    }
+
+    public void topo(int[] visited, int start, Stack<Integer> st) {
+        visited[start] = 1;
+        for (int e : adjListArray[start]) {
+            if (visited[e] == 0) {
+                topo(visited, e, st);
+            }
+        }
+        st.push(start);
+    }
+
     public static void main(String[] args) {
 
         // Create a graph given in the above diagram
@@ -43,6 +67,7 @@ public class topolist {
         graph.addEdge(3, 1);
 
         System.out.println("Topological sorts");
+        graph.topo();
 
     }
 }
