@@ -10,7 +10,7 @@ public class topomatrix {
         for (int i = 0; i < graph.length; i++) {
             if (visited[i] == 0) {
                 dfs(graph, i, visited, st);
-                st.push(i);
+
             }
 
         }
@@ -27,10 +27,10 @@ public class topomatrix {
             int v = graph[start][i];
             if (visited[i] == 0 && v == 1) {
                 dfs(graph, i, visited, st);
-                st.push(i);
             }
 
         }
+        st.push(start);
 
     }
 
