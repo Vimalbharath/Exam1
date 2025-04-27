@@ -42,7 +42,7 @@ public class AdajacencyMatrix {
     public void bfs() {
         int[] visited = new int[data.length];
         for (int i = 0; i < data.length; i++) {
-            if (visited[i] != 0) {
+            if (visited[i] == 0) {
                 visited[i] = 1;
                 Queue<Integer> q = new LinkedList<>();
                 q.add(i);
@@ -68,6 +68,42 @@ public class AdajacencyMatrix {
         graph.addedge(2, 1);
         graph.printgraph();
         graph.bfs();
+        // --- Test Case 2 ---
+        System.out.println("--- Test Case 2 ---");
+        AdajacencyMatrix graph2 = new AdajacencyMatrix(6, false);
+        graph2.addedge(0, 1);
+        graph2.addedge(0, 2);
+        graph2.addedge(1, 3);
+        graph2.addedge(2, 3);
+        graph2.addedge(2, 4);
+        graph2.addedge(4, 5);
+        graph2.printgraph();
+        graph2.bfs(); // Start BFS from vertex 0
+        System.out.println();
+
+        // --- Test Case 3 (Starting from a different vertex) ---
+        System.out.println("--- Test Case 3 ---");
+        AdajacencyMatrix graph3 = new AdajacencyMatrix(6, false);
+        graph3.addedge(0, 1);
+        graph3.addedge(0, 2);
+        graph3.addedge(1, 3);
+        graph3.addedge(2, 3);
+        graph3.addedge(2, 4);
+        graph3.addedge(4, 5);
+        graph3.printgraph();
+        graph3.bfs(); // Start BFS from vertex 2
+        System.out.println();
+
+        // --- Test Case 4 (Disconnected graph) ---
+        System.out.println("--- Test Case 4 ---");
+        AdajacencyMatrix graph4 = new AdajacencyMatrix(7, false);
+        graph4.addedge(0, 1);
+        graph4.addedge(2, 3);
+        graph4.addedge(4, 5);
+        graph4.addedge(5, 6);
+        graph4.printgraph();
+        graph4.bfs(); // Start BFS from vertex 0 (will only explore the connected component)
+
     }
 
 }
