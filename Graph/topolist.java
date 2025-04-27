@@ -1,5 +1,7 @@
 package Graph;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -55,6 +57,28 @@ public class topolist {
         st.push(start);
     }
 
+    public ArrayList<Integer> khan() {
+        int[] indegree = new int[V];
+        for (List<Integer> a : adjListArray) {
+            for (int b : a) {
+                indegree[b]++;
+            }
+        }
+
+        ArrayList<Integer> list = new ArrayList<>();
+        while (list.size() != V) {
+            for (int i = 0; i < V; i++) {
+                if (indegree[i] == 0) {
+                    list.add(i);
+                    for (int b : adjListArray[i]) {
+                        indegree[b]--;
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
 
         // Create a graph given in the above diagram
@@ -68,6 +92,10 @@ public class topolist {
 
         System.out.println("Topological sorts");
         graph.topo();
+        ArrayList<Integer> ans = graph.khan();
+        for (int a : ans) {
+            System.out.println(a);
+        }
 
     }
 }
