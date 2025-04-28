@@ -13,7 +13,7 @@ public class dfslist {
         int[] visited = new int[adj.size()];
         for (int i = 0; i < adj.size(); i++) {
             if (visited[i] == 0) {
-                visited[i] = 1;
+                // visited[i] = 1;
                 dfs(adj, visited, i);
 
             }
@@ -22,11 +22,12 @@ public class dfslist {
     }
 
     public static void dfs(ArrayList<ArrayList<Integer>> adj, int[] visited, int i) {
+        visited[i] = 1;
         System.out.println(i);
         for (int j = 0; j < adj.get(i).size(); j++) {
             int v = adj.get(i).get(j);
             if (visited[v] == 0) {
-                visited[v] = 1;
+                // visited[v] = 1;
                 dfs(adj, visited, v);
             }
         }
