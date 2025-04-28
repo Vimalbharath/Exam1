@@ -27,7 +27,7 @@ public class dfslist {
 
     }
 
-    public static void dfs(ArrayList<ArrayList<Integer>> adj, int[] visited, int i, int[] arrival, int[] depature,
+    public static int dfs(ArrayList<ArrayList<Integer>> adj, int[] visited, int i, int[] arrival, int[] depature,
             int time) {
         visited[i] = 1;
         time = time + 1;
@@ -37,11 +37,12 @@ public class dfslist {
             int v = adj.get(i).get(j);
             if (visited[v] == 0) {
                 // visited[v] = 1;
-                dfs(adj, visited, v, arrival, depature, time);
+                time = dfs(adj, visited, v, arrival, depature, time);
             }
         }
         time = time + 1;
         depature[i] = time;
+        return time;
 
     }
 
