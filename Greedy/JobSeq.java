@@ -13,24 +13,26 @@ public class JobSeq {
             list.get(i).add(deadline[i]);
         }
 
-        list.sort((a, b) -> Integer.compare(a.get(0), b.get(0)));
+        list.sort((a, b) -> Integer.compare(b.get(0), a.get(0)));
         int start = -1;
         int totprofit = 0;
         int count = 0;
         int[] slot = new int[n];
         for (int i = 0; i < n; i++) {
-            start = list.get(i).get(1);
+            start = list.get(i).get(1) - 1;
             for (int j = start; j >= 0; j--) {
                 if (slot[j] == 0) {
                     slot[j] = 1;
                     totprofit += list.get(i).get(0);
                     count++;
+                    break;
                 }
             }
 
         }
-        ans.add(totprofit);
         ans.add(count);
+        ans.add(totprofit);
+
         return ans;
 
     }
