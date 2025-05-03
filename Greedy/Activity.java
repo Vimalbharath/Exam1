@@ -15,7 +15,7 @@ public class Activity {
         while (!pq.isEmpty()) {
             int ans[] = pq.poll();
             int cf = ans[1];
-            if (finishtime < cf) {
+            if (finishtime < ans[0]) {
                 count++;
                 finishtime = cf;
             }
