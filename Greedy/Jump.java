@@ -6,8 +6,8 @@ public class Jump {
         int n = nums.length;
         int maxreach = 0;
         for (int i = 0; i < nums.length; i++) {
-            maxreach = Math.min(i + nums[i], maxreach);
-            if (maxreach > n - 1)
+            maxreach = Math.max(i + nums[i], maxreach);
+            if (maxreach >= n - 1)
                 return true;
             if (i == currentreach) {
                 if (i == maxreach) {
