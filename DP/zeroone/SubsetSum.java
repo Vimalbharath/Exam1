@@ -8,13 +8,19 @@ public class SubsetSum {
 
     public static int perfectSum(int count, int i, int[] arr, int target) {
 
+        if (i == arr.length) {
+            return 0;
+        }
+
         if (target == 0) {
             return 1;
         }
 
-        if (target > 0) {
-            count = count + perfectSum(count, i + 1, arr, target - arr[i]);
+        if (target < 0) {
+            return 0;
         }
+        count += perfectSum(count, i + 1, arr, target - arr[i]);
+        count += perfectSum(count, i + 1, arr, target);
         return count;
     }
 
