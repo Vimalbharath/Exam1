@@ -19,9 +19,9 @@ public class SubsetSum {
         if (target < 0) {
             return 0;
         }
-        count += perfectSum(count, i + 1, arr, target - arr[i]);
-        count += perfectSum(count, i + 1, arr, target);
-        return count;
+        int left = perfectSum(count, i + 1, arr, target - arr[i]);
+        int right = perfectSum(count, i + 1, arr, target);
+        return left + right;
     }
 
     public static void main(String[] args) {
