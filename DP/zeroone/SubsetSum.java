@@ -6,21 +6,21 @@ public class SubsetSum {
 
     }
 
-    public static int perfectSum(int count, int i, int[] arr, int target) {
+    public static int perfectSum(int currsum, int i, int[] arr, int target) {
 
         if (i == arr.length) {
             return 0;
         }
 
-        if (target == 0) {
+        if (currsum == 0) {
             return 1;
         }
 
-        if (target < 0) {
+        if (currsum < 0) {
             return 0;
         }
-        int left = perfectSum(count, i + 1, arr, target - arr[i]);
-        int right = perfectSum(count, i + 1, arr, target);
+        int left = perfectSum(target - arr[i], i + 1, arr, target);
+        int right = perfectSum(currsum, i + 1, arr, target);
         return left + right;
     }
 
