@@ -13,12 +13,12 @@ public class EqualSum {
         if (sum % 2 == 1) {
             return false;
         }
-        int[][] memo = new int[n][sum + 1];
+        int[][] memo = new int[n + 1][sum / 2 + 1];
         for (int[] a : memo) {
             Arrays.fill(a, -1);
         }
 
-        return canSum(nums, sum / 2, n - 1, memo);
+        return canSum(nums, sum / 2, n, memo);
     }
 
     public boolean canSum(int[] nums, int sum, int n, int[][] memo) {
@@ -35,8 +35,8 @@ public class EqualSum {
         }
 
         boolean include = false;
-        if (sum >= nums[n - 1]) {
-            include = canSum(nums, sum - nums[n], n - 1, memo);
+        if (n > 0 && sum >= nums[n - 1]) {
+            include = canSum(nums, sum - nums[n - 1], n - 1, memo);
         }
 
         boolean exclude = canSum(nums, sum, n - 1, memo);
