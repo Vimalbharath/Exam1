@@ -26,22 +26,21 @@ public class EqualSum {
             return (memo[n][sum] == 1 ? true : false);
         }
         if (sum == 0) {
+            memo[n][sum] = 1;
             return true;
         }
         if (n == 0) {
+            memo[n][sum] = 0;
             return false;
         }
 
-        if (canSum(nums, sum - nums[n], n - 1, memo)) {
-            memo[n - 1][sum - nums[n]] = 1;
-        } else {
-            memo[n - 1][sum - nums[n]] = 0;
+        boolean include = false;
+        if (sum >= nums[n - 1]) {
+            include = canSum(nums, sum - nums[n], n - 1, memo);
         }
-        if (canSum(nums, sum, n - 1, memo)) {
-            memo[n - 1][sum] = 1;
-        } else {
-            memo[n - 1][sum] = 0;
-        }
-        return canSum(nums, sum - nums[n], n - 1, memo) || canSum(nums, sum, n - 1, memo);
+
+        boolean exclude = canSum(nums, sum, n - 1, memo);
+        memo[n][sum] = (include || exclude) == true ? 1 : 0;
+        return (include || exclude);
     }
 }
