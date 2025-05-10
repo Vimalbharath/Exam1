@@ -9,17 +9,23 @@ public class SubsetSum {
         // memo[0][i] = 0;
         // }
         for (int i = 0; i <= arr.length; i++) {
-            memo[0][i] = 1;
+            memo[i][0] = 1;
         }
 
         for (int i = 1; i <= arr.length; i++) {
             for (int j = 1; j <= target; j++) {
                 if (arr[i - 1] <= j) {
-                    memo[i][j] = memo[i - 1][j - arr[i]];
+                    memo[i][j] = memo[i - 1][j - arr[i - 1]] + memo[i - 1][j];
                 } else {
                     memo[i][j] = memo[i - 1][j];
                 }
             }
+        }
+        for (int[] a : memo) {
+            for (int b : a) {
+                System.out.print(b + "  ");
+            }
+            System.out.println();
         }
 
         return memo[arr.length][target];
