@@ -16,17 +16,11 @@ public class EqualSum2 {
     }
 
     public boolean canSum(int[] nums, int sum, int n, boolean[][] memo) {
-        for (int i = 0; i < memo.length; i++) {
-            for (int j = 0; j < memo[0].length; j++) {
-                if (i == 0) {
-
-                    memo[n][sum] = false;
-                }
-                if (j == 0) {
-
-                    memo[n][sum] = true;
-                }
-            }
+        for (int i = 0; i <= n; i++) {
+            memo[i][0] = true;
+        }
+        for (int j = 1; j <= sum; j++) {
+            memo[0][j] = false;
         }
 
         for (int i = 1; i < memo.length; i++) {
