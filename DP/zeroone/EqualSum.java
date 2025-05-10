@@ -23,7 +23,7 @@ public class EqualSum {
 
     public boolean canSum(int[] nums, int sum, int n, int[][] memo) {
         if (memo[n][sum] != -1) {
-            return (memo[n][sum] == 1 ? true : false);
+            return (memo[n][sum] == 1);
         }
         if (sum == 0) {
             memo[n][sum] = 1;
@@ -35,7 +35,7 @@ public class EqualSum {
         }
 
         boolean include = false;
-        if (n > 0 && sum >= nums[n - 1]) {
+        if (sum >= nums[n - 1]) {
             include = canSum(nums, sum - nums[n - 1], n - 1, memo);
         }
 
