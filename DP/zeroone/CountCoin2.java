@@ -12,7 +12,7 @@ public class CountCoin2 {
 
             for (int j = 1; j <= amt; j++) {
                 if (coins[i - 1] <= j) {
-                    dp[i][j] = dp[i - 1][j - coins[i - 1]] + dp[i - 1][j];
+                    dp[i][j] = dp[i][j - coins[i - 1]] + dp[i - 1][j];
                 } else {
                     dp[i][j] = dp[i - 1][j];
                 }
