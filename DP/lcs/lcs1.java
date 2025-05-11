@@ -1,10 +1,12 @@
 package DP.lcs;
 
+//https://leetcode.com/problems/longest-common-subsequence/?envType=problem-list-v2&envId=dynamic-programming
+
 import java.util.Arrays;
 
 public class lcs1 {
-    public static int longestCommonSubsequence(String text1, String text2) {
-        int memo[][] = new int[text1.length() + 1][text2.length() + 1];
+    public static int longestCommonSubsequence(String text1, String text2, int[][] memo) {
+
         for (int[] a : memo) {
             Arrays.fill(a, -1);
         }
@@ -29,6 +31,13 @@ public class lcs1 {
     public static void main(String[] args) {
         String text1 = "vimala";
         String text2 = "avighagmahklb";
-        System.out.println(longestCommonSubsequence(text1, text2));
+        int memo[][] = new int[text1.length() + 1][text2.length() + 1];
+        System.out.println(longestCommonSubsequence(text1, text2, memo));
+        for (int[] a : memo) {
+            for (int b : a) {
+                System.out.print(b + "  ");
+            }
+            System.out.println();
+        }
     }
 }
