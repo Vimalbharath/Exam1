@@ -1,5 +1,7 @@
 package DP.lcs;
 
+import java.util.ArrayList;
+
 //https://leetcode.com/problems/longest-common-subsequence/?envType=problem-list-v2&envId=dynamic-programming
 
 import java.util.Arrays;
@@ -22,6 +24,25 @@ public class lcs2 {
                 System.out.print(b + "  ");
             }
             System.out.println();
+        }
+        ArrayList<Character> list = new ArrayList<>();
+        int m = memo.length - 1;
+        int n = memo[0].length - 1;
+        while (m != 0 && n != 0) {
+            if (text1.charAt(m - 1) == text2.charAt(n - 1)) {
+                list.add(0, text1.charAt(n));
+                n--;
+                m--;
+            } else {
+                if (memo[m - 1][n] > memo[m][n - 1]) {
+                    m--;
+                } else {
+                    n--;
+                }
+            }
+        }
+        for (Character a : list) {
+            System.out.print(a + " ");
         }
         return memo[text1.length()][text2.length()];
     }
