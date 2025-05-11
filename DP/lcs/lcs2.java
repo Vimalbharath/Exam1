@@ -30,7 +30,7 @@ public class lcs2 {
         int n = memo[0].length - 1;
         while (m != 0 && n != 0) {
             if (text1.charAt(m - 1) == text2.charAt(n - 1)) {
-                list.add(0, text1.charAt(n));
+                list.add(0, text1.charAt(m - 1));
                 n--;
                 m--;
             } else {
