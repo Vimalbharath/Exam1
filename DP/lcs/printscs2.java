@@ -1,5 +1,7 @@
 package DP.lcs;
 
+import java.util.ArrayList;
+
 public class printscs2 {
     public static int scs(String s1, String s2) {
         int[][] dp = new int[s1.length() + 1][s2.length() + 1];
@@ -11,6 +13,25 @@ public class printscs2 {
                     dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
                 }
             }
+        }
+        ArrayList<Character> list = new ArrayList<>();
+        int m = s1.length();
+        int n = s2.length();
+        while (m != 0 && n != 0) {
+            if (s1.charAt(m - 1) == s2.charAt(n - 1)) {
+                list.add(0, s1.charAt(m - 1));
+                m--;
+                n--;
+            } else {
+                if (dp[m][n - 1] > dp[m][n]) {
+                    n--;
+                } else {
+                    m--;
+                }
+            }
+        }
+        for (Character a : list) {
+            System.out.print(a + " ");
         }
         return dp[s1.length()][s2.length()];
     }
