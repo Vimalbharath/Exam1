@@ -24,20 +24,20 @@ public class printscs2 {
                 n--;
             } else {
                 if (dp[m][n - 1] > dp[m][n]) {
-                    list.add(0, s2.charAt(n - 1));
+                    // list.add(0, s2.charAt(n - 1));
                     n--;
                 } else {
-                    list.add(0, s1.charAt(m - 1));
+                    // list.add(0, s1.charAt(m - 1));
                     m--;
                 }
             }
         }
         while (m != 0) {
-            list.add(0, s1.charAt(m - 1));
+            // list.add(0, s1.charAt(m - 1));
             m--;
         }
         while (n != 0) {
-            list.add(0, s2.charAt(n - 1));
+            // list.add(0, s2.charAt(n - 1));
             n--;
         }
         for (Character a : list) {
@@ -46,9 +46,21 @@ public class printscs2 {
         return dp[s1.length()][s2.length()];
     }
 
+    public static String reverse(String s1) {
+        int l = s1.length();
+        String s3 = "";
+        while (l >= 1) {
+            s3 = s3 + s1.charAt(l - 1);
+            l--;
+        }
+        return s3;
+    }
+
     public static void main(String[] args) {
-        String s1 = "vimalbharathkumar";
+        String s1 = "abasbat";
         String s2 = "rath";
         System.out.println(scs(s1, s2));
+        System.out.println(reverse(s1));
+        System.out.println(scs(s1, reverse(s1)));
     }
 }
