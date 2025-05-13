@@ -63,7 +63,7 @@ public class printscs2 {
     }
 
     public static void main(String[] args) {
-        String s1 = "abasbat";
+        String s1 = "vimalbharathkumar";
         String s2 = "rath";
         System.out.println(scs(s1, s2));
         System.out.println(reverse(s1));
