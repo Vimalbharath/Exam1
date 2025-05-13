@@ -24,11 +24,21 @@ public class printscs2 {
                 n--;
             } else {
                 if (dp[m][n - 1] > dp[m][n]) {
+                    list.add(0, s2.charAt(n - 1));
                     n--;
                 } else {
+                    list.add(0, s1.charAt(m - 1));
                     m--;
                 }
             }
+        }
+        while (m != 0) {
+            list.add(0, s1.charAt(m - 1));
+            m--;
+        }
+        while (n != 0) {
+            list.add(0, s2.charAt(n - 1));
+            n--;
         }
         for (Character a : list) {
             System.out.print(a + " ");
