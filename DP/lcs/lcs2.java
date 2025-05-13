@@ -11,7 +11,7 @@ public class lcs2 {
         int memo[][] = new int[text1.length() + 1][text2.length() + 1];
         for (int i = 1; i <= text1.length(); i++) {
             for (int j = 1; j <= text2.length(); j++) {
-                if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                if (text1.charAt(i - 1) == text2.charAt(j - 1) && i != j) {
                     memo[i][j] = 1 + memo[i - 1][j - 1];
                 } else {
                     memo[i][j] = Math.max(memo[i - 1][j], memo[i][j - 1]);
@@ -29,7 +29,7 @@ public class lcs2 {
         int m = memo.length - 1;
         int n = memo[0].length - 1;
         while (m != 0 && n != 0) {
-            if (text1.charAt(m - 1) == text2.charAt(n - 1)) {
+            if (text1.charAt(m - 1) == text2.charAt(n - 1) && m != n) {
                 list.add(0, text1.charAt(m - 1));
                 n--;
                 m--;
@@ -50,8 +50,9 @@ public class lcs2 {
     public static void main(String[] args) {
         String text1 = "vimala";
         String text2 = "avighagmahklb";
+        String text3 = "aabcbdc";
 
-        System.out.println(longestCommonSubsequence(text1, text2));
+        System.out.println(longestCommonSubsequence(text3, text3));
 
     }
 }
