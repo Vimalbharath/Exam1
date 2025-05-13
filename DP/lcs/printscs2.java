@@ -14,6 +14,12 @@ public class printscs2 {
                 }
             }
         }
+        for (int[] a : dp) {
+            for (int b : a) {
+                System.out.print(b + "  ");
+            }
+            System.out.println();
+        }
         ArrayList<Character> list = new ArrayList<>();
         int m = s1.length();
         int n = s2.length();
@@ -23,7 +29,7 @@ public class printscs2 {
                 m--;
                 n--;
             } else {
-                if (dp[m][n - 1] > dp[m][n]) {
+                if (dp[m][n - 1] > dp[m - 1][n]) {
                     // list.add(0, s2.charAt(n - 1));
                     n--;
                 } else {
