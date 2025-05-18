@@ -27,8 +27,8 @@ public class palindromepart1 {
         if (isPalindrome(str, s, e) == true) {
             return 0;
         }
-        int ans = 0;
-        for (int k = s; k <= e; k++) {
+        int ans = Integer.MAX_VALUE;
+        for (int k = s; k <= e - 1; k++) {
             int temp = pp(str, s, k) + 1 + pp(str, k + 1, e);
             ans = Math.min(temp, ans);
         }
