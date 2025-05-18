@@ -2,12 +2,12 @@ package DP.mcm;
 
 public class eggdrop {
     public static int minattempt(int e, int f) {
-        if (e == 0 || f == 0) {
-            return 0;
+        if (e <= 1 || f <= 0) {
+            return f;
         }
         int attempt = Integer.MAX_VALUE;
         for (int k = 1; k <= f; k++) {
-            int ans = Math.min(minattempt(e, k), minattempt(e - 1, f - k));
+            int ans = 1 + Math.max(minattempt(e - 1, k - 1), minattempt(e, f - k));
             attempt = Math.min(attempt, ans);
         }
         return attempt;
