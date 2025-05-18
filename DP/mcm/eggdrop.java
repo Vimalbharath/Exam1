@@ -34,12 +34,18 @@ public class eggdrop {
     }
 
     public static void main(String[] args) {
-        int e = 2;
+        int e = 5;
         int f = 100;
         int[][] dp = new int[e + 1][f + 1];
         for (int[] a : dp) {
             Arrays.fill(a, -1);
         }
         System.out.println(minattempt(e, f, dp));
+        for (int[] a : dp) {
+            for (int c : a) {
+                System.out.print(c + " ");
+            }
+            System.out.println();
+        }
     }
 }
