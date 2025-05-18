@@ -17,17 +17,17 @@ public class eggdrop {
 
         int attempt = Integer.MAX_VALUE;
         for (int k = 1; k <= f; k++) {
-            int left = dp[e - 1][k - 1];
-            if (dp[e - 1][k - 1] == -1) {
-                left = minattempt(e - 1, k - 1, dp);
-                dp[e - 1][k - 1] = left;
-            }
-            int right = dp[e][f - k];
-            if (dp[e][f - k] == -1) {
-                left = minattempt(e, f - k, dp);
-                dp[e][f - k] = right;
-            }
-            int ans = 1 + Math.max(left, right);
+            // int left = dp[e - 1][k - 1];
+            // if (dp[e - 1][k - 1] == -1) {
+            // left = minattempt(e - 1, k - 1, dp);
+            // dp[e - 1][k - 1] = left;
+            // }
+            // int right = dp[e][f - k];
+            // if (dp[e][f - k] == -1) {
+            // left = minattempt(e, f - k, dp);
+            // dp[e][f - k] = right;
+            // }
+            int ans = 1 + Math.max(minattempt(e - 1, k - 1, dp), minattempt(e, f - k, dp));
             attempt = Math.min(attempt, ans);
         }
         return dp[e][f] = attempt;
