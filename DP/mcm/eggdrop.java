@@ -34,8 +34,8 @@ public class eggdrop {
     }
 
     public static void main(String[] args) {
-        int e = 5;
-        int f = 100;
+        int e = 3;
+        int f = 5;
         int[][] dp = new int[e + 1][f + 1];
         for (int[] a : dp) {
             Arrays.fill(a, -1);
